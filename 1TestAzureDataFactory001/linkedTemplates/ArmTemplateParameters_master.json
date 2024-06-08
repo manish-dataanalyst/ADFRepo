@@ -1,0 +1,54 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "1TestAzureDataFactory001"
+		},
+		"LS_ADLSConnection_accountKey": {
+			"value": ""
+		},
+		"LS_ADLSTestConnection_accountKey": {
+			"value": ""
+		},
+		"LS_BlobTestConnection_connectionString": {
+			"value": ""
+		},
+		"LS_Blob_Connection_connectionString": {
+			"value": ""
+		},
+		"LS_HTTPS_Connection_password": {
+			"value": ""
+		},
+		"LS_SQLDB_connection_password": {
+			"value": ""
+		},
+		"LS_ADLSConnection_properties_typeProperties_url": {
+			"value": "https://adfl200adlstoragegen2.dfs.core.windows.net/"
+		},
+		"LS_ADLSTestConnection_properties_typeProperties_url": {
+			"value": "https://adfl200adlstoragegen2.dfs.core.windows.net/"
+		},
+		"LS_HTTPS_Connection_properties_typeProperties_url": {
+			"value": "@{linkedService().BaseURL}"
+		},
+		"LS_HTTPS_Connection_properties_typeProperties_userName": {
+			"value": "manish-dataanalyst"
+		},
+		"LS_SQLDB_connection_properties_typeProperties_server": {
+			"value": "azuresqlserverfreet001.database.windows.net"
+		},
+		"LS_SQLDB_connection_properties_typeProperties_database": {
+			"value": "Azuresqldatabasefreet001"
+		},
+		"LS_SQLDB_connection_properties_typeProperties_userName": {
+			"value": "Manishfreet"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}
