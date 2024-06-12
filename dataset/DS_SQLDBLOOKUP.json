@@ -1,0 +1,13 @@
+{
+	"name": "DS_SQLDBLOOKUP",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_SQLDB_connection",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

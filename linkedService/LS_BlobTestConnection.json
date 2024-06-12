@@ -1,0 +1,12 @@
+{
+	"name": "LS_BlobTestConnection",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobStorage",
+		"typeProperties": {
+			"connectionString": "DefaultEndpointsProtocol=https;AccountName=adf2blobstorage;EndpointSuffix=core.windows.net;",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQEZBNTdGQzAxLTVEMjYtNEQ5Qi04N0YyLTQ2MTY2RkU5QTdGRF8wOGFkY2MxMC04ZDFiLTQ2MjAtYThlMy1kZWFjMWQ1OTRjYzMiDQp9"
+		}
+	}
+}
