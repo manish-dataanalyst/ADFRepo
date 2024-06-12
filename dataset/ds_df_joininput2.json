@@ -1,0 +1,32 @@
+{
+	"name": "ds_df_joininput2",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_Blob_Connection",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "returns.csv",
+				"container": "raw"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Order_Id",
+				"type": "String"
+			},
+			{
+				"name": "Return_Reason",
+				"type": "String"
+			}
+		]
+	}
+}
