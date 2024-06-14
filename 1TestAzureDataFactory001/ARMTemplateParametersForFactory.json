@@ -23,6 +23,9 @@
 		"LS_SQLDB_connection_password": {
 			"value": ""
 		},
+		"LS_SQL_default_DB_password": {
+			"value": ""
+		},
 		"LS_ADLSConnection_properties_typeProperties_url": {
 			"value": "https://adfl200adlstoragegen2.dfs.core.windows.net/"
 		},
@@ -42,6 +45,15 @@
 			"value": "Azuresqldatabasefreet001"
 		},
 		"LS_SQLDB_connection_properties_typeProperties_userName": {
+			"value": "Manishfreet"
+		},
+		"LS_SQL_default_DB_properties_typeProperties_server": {
+			"value": "azuresqlserverfreet001.database.windows.net"
+		},
+		"LS_SQL_default_DB_properties_typeProperties_database": {
+			"value": "Defaultdatabase"
+		},
+		"LS_SQL_default_DB_properties_typeProperties_userName": {
 			"value": "Manishfreet"
 		}
 	}

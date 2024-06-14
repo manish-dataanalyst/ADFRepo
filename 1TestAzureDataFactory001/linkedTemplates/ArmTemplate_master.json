@@ -31,6 +31,10 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'password' of 'LS_SQLDB_connection'"
 		},
+		"LS_SQL_default_DB_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'LS_SQL_default_DB'"
+		},
 		"LS_ADLSConnection_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://adfl200adlstoragegen2.dfs.core.windows.net/"
@@ -56,6 +60,18 @@
 			"defaultValue": "Azuresqldatabasefreet001"
 		},
 		"LS_SQLDB_connection_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "Manishfreet"
+		},
+		"LS_SQL_default_DB_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "azuresqlserverfreet001.database.windows.net"
+		},
+		"LS_SQL_default_DB_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Defaultdatabase"
+		},
+		"LS_SQL_default_DB_properties_typeProperties_userName": {
 			"type": "string",
 			"defaultValue": "Manishfreet"
 		},
@@ -162,11 +178,43 @@
 				"parameters": {
 					"factoryName": {
 						"value": "[parameters('factoryName')]"
+					},
+					"LS_SQL_default_DB_password": {
+						"value": "[parameters('LS_SQL_default_DB_password')]"
+					},
+					"LS_SQL_default_DB_properties_typeProperties_server": {
+						"value": "[parameters('LS_SQL_default_DB_properties_typeProperties_server')]"
+					},
+					"LS_SQL_default_DB_properties_typeProperties_database": {
+						"value": "[parameters('LS_SQL_default_DB_properties_typeProperties_database')]"
+					},
+					"LS_SQL_default_DB_properties_typeProperties_userName": {
+						"value": "[parameters('LS_SQL_default_DB_properties_typeProperties_userName')]"
 					}
 				}
 			},
 			"dependsOn": [
 				"[resourceId('Microsoft.Resources/deployments', '1TestAzureDataFactory001_ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "1TestAzureDataFactory001_ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2018-02-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', '1TestAzureDataFactory001_ArmTemplate_2')]"
 			]
 		}
 	]
