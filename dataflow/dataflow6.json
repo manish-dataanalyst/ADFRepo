@@ -1,0 +1,147 @@
+{
+	"name": "dataflow6",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "DelimitedText2",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText3",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "DelimitedText3",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				},
+				{
+					"dataset": {
+						"referenceName": "DelimitedText3",
+						"type": "DatasetReference"
+					},
+					"name": "sink3"
+				}
+			],
+			"transformations": [
+				{
+					"name": "lookup1"
+				},
+				{
+					"name": "split1"
+				},
+				{
+					"name": "select1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Order_Id as string,",
+				"          Return_Reason as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source(output(",
+				"          row_id as string,",
+				"          order_id as string,",
+				"          order_date as string,",
+				"          ship_date as string,",
+				"          ship_mode as string,",
+				"          customer_id as string,",
+				"          customer_name as string,",
+				"          segment as string,",
+				"          country as string,",
+				"          city as string,",
+				"          state as string,",
+				"          postal_code as string,",
+				"          region as string,",
+				"          product_id as string,",
+				"          category as string,",
+				"          sub_category as string,",
+				"          product_name as string,",
+				"          sales as string,",
+				"          quantity as string,",
+				"          discount as string,",
+				"          profit as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source2",
+				"source1, source2 lookup(source1@Order_Id == source2@order_id,",
+				"     multiple: false,",
+				"     pickup: 'any',",
+				"     broadcast: 'auto')~> lookup1",
+				"select1 split(category =='Office Supplies' || category =='Furniture',",
+				"     isMatch(),",
+				"     disjoint: true) ~> split1@(filteredrecords, allrecords, nonmatchingrecords)",
+				"lookup1 select(mapColumn(",
+				"          Order_Id = source1@Order_Id,",
+				"          Return_Reason,",
+				"          row_id,",
+				"          order_date,",
+				"          ship_date,",
+				"          ship_mode,",
+				"          customer_id,",
+				"          customer_name,",
+				"          segment,",
+				"          country,",
+				"          city,",
+				"          state,",
+				"          postal_code,",
+				"          region,",
+				"          product_id,",
+				"          category,",
+				"          sub_category,",
+				"          product_name,",
+				"          sales,",
+				"          quantity,",
+				"          discount,",
+				"          profit",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select1",
+				"split1@filteredrecords sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1",
+				"split1@allrecords sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink2",
+				"split1@nonmatchingrecords sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink3"
+			]
+		}
+	}
+}
